@@ -291,11 +291,11 @@ echo -e "\033[1;45;37m############### STAGE 2: INSTALL ESSENTIAL COMPONENTS ####
 #
 sleep 10
 #
-checkAndExecute "${SBL_SYS_USR}/swap/bin/swap_install" 6 7
+#checkAndExecute "${SBL_SYS_USR}/swap/bin/swap_install" 6 7
 #
 sleep 10
 #
-checkAndExecute "${SBL_SYS_USR}/swap/bin/swap_enable.service" 8 9
+#checkAndExecute "${SBL_SYS_USR}/swap/bin/swap_enable.service" 8 9
 #
 sleep 10
 #
