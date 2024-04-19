@@ -128,7 +128,8 @@ sleep 10
 echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: LABEL OF ${USB_DRIVE_BRAND_MODEL} IS ${USB_DRIVE_LABEL}"
 umount -f "/dev/${USB_DRIVE}1" 2> /dev/null
 #
-if $(checkSupportForExt4)
+#if $(checkSupportForExt4)
+if false
 then
     echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: CREATE EXT4 FILESYSTEM"
     #
@@ -143,7 +144,7 @@ else
     nvram set usb_ext_opt="barrier=1,data=ordered"
     nvram commit
     #
-    mkfs.ext3 -FL "${USB_DRIVE_LABEL}" "${USB_DRIVE_PARTITION}"
+#    mkfs.ext3 -FL "${USB_DRIVE_LABEL}" "${USB_DRIVE_PARTITION}"
 fi
 #
 # Check if mkfs.ext3 returns 0
