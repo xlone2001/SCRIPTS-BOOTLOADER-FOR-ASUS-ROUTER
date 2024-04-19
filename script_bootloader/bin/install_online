@@ -54,9 +54,9 @@ fi
 # 设置自定义变量DOWNLOAD_LINK_PREFIX为最新版SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER的下载链接前缀
 if [ "${LOCATION}" == "CN" ]
 then
-    DOWNLOAD_LINK_PREFIX="https://cdn.jsdelivr.net/gh/JACK-THINK/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER@latest/script_bootloader"
+    DOWNLOAD_LINK_PREFIX="https://cdn.jsdelivr.net/gh/xlone2001/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER@latest/script_bootloader"
 else
-    DOWNLOAD_LINK_PREFIX="https://raw.githubusercontent.com/JACK-THINK/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER/master/script_bootloader"
+    DOWNLOAD_LINK_PREFIX="https://raw.githubusercontent.com/xlone2001/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER/master/script_bootloader"
 fi
 #
 # OPERATING_SYSTEM: Operating system of the ASUS Router
@@ -88,59 +88,60 @@ esac
 #
 # Download checksum generator and checker
 # 下载checksum generator and checker
-wget -q -c -t 10 -T 120 -O "/tmp/gohash" --no-check-certificate "${DOWNLOAD_LINK_PREFIX}/bin/gohash/gohash-${OPERATING_SYSTEM}-${ROUTER_ARCHITECTURE}"
+#wget -q -c -t 10 -T 120 -O "/tmp/gohash" --no-check-certificate "${DOWNLOAD_LINK_PREFIX}/bin/gohash/gohash-${OPERATING_SYSTEM}-${ROUTER_ARCHITECTURE}"
 #
-chmod 777 "/tmp/gohash"
+#chmod 777 "/tmp/gohash"
 #
 # Check integrity of /tmp/gohash
 # 检查文件/tmp/gohash的完整性
-if [ ! -s "/tmp/gohash" ] || \
-[ "$(md5sum "/tmp/gohash" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" != "$(/tmp/gohash -a md5 "/tmp/gohash" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" ]
-then
-    echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CONNECTION FAILED"
-    echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
+#if [ ! -s "/tmp/gohash" ] || \
+#[ "$(md5sum "/tmp/gohash" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" != "$(/tmp/gohash -a md5 "/tmp/gohash" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" ]
+#then
+#    echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CONNECTION FAILED"
+#    echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
     #
-    rm -f "/tmp/gohash"
-    rm -f "/tmp/install_online"
+#    rm -f "/tmp/gohash"
+#    rm -f "/tmp/install_online"
     #
-    exit 5
-fi
+#    exit 5
+#fi
 #
 # Download system update fingerprint of the latest SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER
 # 下载最新版SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER的系统更新指纹
-wget -q -c -t 10 -T 120 -O "/tmp/sys_update_fingerprint_current" --no-check-certificate "${DOWNLOAD_LINK_PREFIX}/var/update/sys_update_fingerprint_current"
+#wget -q -c -t 10 -T 120 -O "/tmp/sys_update_fingerprint_current" --no-check-certificate "${DOWNLOAD_LINK_PREFIX}/var/update/sys_update_fingerprint_current"
 #
 # CURRENT_FINGERPRINT: System update fingerprint of the current SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER
 # 设置自定义变量CURRENT_FINGERPRINT为当前SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER的系统更新指纹
-CURRENT_FINGERPRINT="/tmp/sys_update_fingerprint_current"
+#CURRENT_FINGERPRINT="/tmp/sys_update_fingerprint_current"
 #
 # Check integrity of ${CURRENT_FINGERPRINT}
 # 检查文件${CURRENT_FINGERPRINT}的完整性
-if [ ! -e "${CURRENT_FINGERPRINT}" ] || \
-[ $(cat "${CURRENT_FINGERPRINT}" | wc -l) -lt 100 ]
-then
-    echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CONNECTION FAILED"
-    echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
+#if [ ! -e "${CURRENT_FINGERPRINT}" ] || \
+#[ $(cat "${CURRENT_FINGERPRINT}" | wc -l) -lt 100 ]
+#then
+#    echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CONNECTION FAILED"
+#    echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
     #
-    rm -f "${CURRENT_FINGERPRINT}"
-    rm -f "/tmp/gohash"
-    rm -f "/tmp/install_online"
+#    rm -f "${CURRENT_FINGERPRINT}"
+#    rm -f "/tmp/gohash"
+#    rm -f "/tmp/install_online"
     #
-    exit 5
-fi
+#    exit 5
+#fi
 #
 # Check integrity of /tmp/install_online
 # 检查文件/tmp/install_online的完整性
-if [ ! -s "/tmp/install_online" ] || \
-[ "$(/tmp/gohash -a sha256 "/tmp/install_online" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" != "$(grep 'bin/install_online$' "${CURRENT_FINGERPRINT}" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" ]
+if [ ! -s "/tmp/install_online" ]
+# || \
+#[ "$(/tmp/gohash -a sha256 "/tmp/install_online" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" != "$(grep 'bin/install_online$' "${CURRENT_FINGERPRINT}" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" ]
 then
     echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CONNECTION FAILED"
     echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
-    #
-    rm -f "${CURRENT_FINGERPRINT}"
-    rm -f "/tmp/gohash"
+#    #
+#    rm -f "${CURRENT_FINGERPRINT}"
+#    rm -f "/tmp/gohash"
     rm -f "/tmp/install_online"
-    #
+#    #
     exit 5
 fi
 #
@@ -150,17 +151,18 @@ wget -q -c -t 10 -T 120 -O "/tmp/prerequisite_checker" --no-check-certificate "$
 #
 # Check integrity of /tmp/prerequisite_checker
 # 检查文件/tmp/prerequisite_checker的完整性
-if [ ! -s "/tmp/prerequisite_checker" ] || \
-[ "$(/tmp/gohash -a sha256 "/tmp/prerequisite_checker" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" != "$(grep 'bin/prerequisite_checker$' "${CURRENT_FINGERPRINT}" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" ]
+if [ ! -s "/tmp/prerequisite_checker" ]
+# || \
+#[ "$(/tmp/gohash -a sha256 "/tmp/prerequisite_checker" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" != "$(grep 'bin/prerequisite_checker$' "${CURRENT_FINGERPRINT}" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" ]
 then
     echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CONNECTION FAILED"
     echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
-    #
+#    #
     rm -f "/tmp/prerequisite_checker"
-    rm -f "${CURRENT_FINGERPRINT}"
-    rm -f "/tmp/gohash"
+#    rm -f "${CURRENT_FINGERPRINT}"
+#    rm -f "/tmp/gohash"
     rm -f "/tmp/install_online"
-    #
+#    #
     exit 5
 fi
 #
@@ -179,8 +181,8 @@ then
     echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
     #
     rm -f "/tmp/prerequisite_checker"
-    rm -f "${CURRENT_FINGERPRINT}"
-    rm -f "/tmp/gohash"
+#    rm -f "${CURRENT_FINGERPRINT}"
+#    rm -f "/tmp/gohash"
     rm -f "/tmp/install_online"
     #
     exit 2
@@ -220,8 +222,8 @@ do
         "n" | "no")
             echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: ABORT INSTALLATION"
             #
-            rm -f "${CURRENT_FINGERPRINT}"
-            rm -f "/tmp/gohash"
+#            rm -f "${CURRENT_FINGERPRINT}"
+#            rm -f "/tmp/gohash"
             rm -f "/tmp/install_online"
             #
             exit 3
@@ -243,15 +245,16 @@ wget -c -t 10 -T 120 -O "/tmp/drive_modifier" --no-check-certificate "${DOWNLOAD
 #
 # Check integrity of /tmp/drive_modifier
 # 检查文件/tmp/drive_modifier的完整性
-if [ ! -s "/tmp/drive_modifier" ] || \
-[ "$(/tmp/gohash -a sha256 "/tmp/drive_modifier" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" != "$(grep 'bin/drive_modifier$' "${CURRENT_FINGERPRINT}" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" ]
+if [ ! -s "/tmp/drive_modifier" ]
+#|| \
+#[ "$(/tmp/gohash -a sha256 "/tmp/drive_modifier" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" != "$(grep 'bin/drive_modifier$' "${CURRENT_FINGERPRINT}" | sed -E -n -e 's#^([[:alnum:]]+)[[:space:]]+.*#\1#p')" ]
 then
     echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CONNECTION FAILED"
     echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
     #
     rm -f "/tmp/drive_modifier"
-    rm -f "${CURRENT_FINGERPRINT}"
-    rm -f "/tmp/gohash"
+#    rm -f "${CURRENT_FINGERPRINT}"
+#    rm -f "/tmp/gohash"
     rm -f "/tmp/install_online"
     #
     exit 5
@@ -272,8 +275,8 @@ then
     echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
     #
     rm -f "/tmp/drive_modifier"
-    rm -f "${CURRENT_FINGERPRINT}"
-    rm -f "/tmp/gohash"
+#    rm -f "${CURRENT_FINGERPRINT}"
+#    rm -f "/tmp/gohash"
     rm -f "/tmp/install_online"
     exit 4
 fi
@@ -297,7 +300,7 @@ USB_MOUNT_POINT="$(mount | sed -E -n -e 's/.*[[:space:]]+([^[:space:]]*'"${USB_D
 #
 # DOWNLOAD_LINK: Download link of the latest SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER
 # 设置自定义变量DOWNLOAD_LINK为最新版SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER的下载链接
-wget -c -t 10 -T 120 -O "/tmp/sbl_download_link.html" --no-check-certificate "https://api.github.com/repos/JACK-THINK/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER/releases/latest"
+wget -c -t 10 -T 120 -O "/tmp/sbl_download_link.html" --no-check-certificate "https://api.github.com/repos/xlone2001/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER/releases/latest"
 #
 if [ ! -s "/tmp/sbl_download_link.html" ] || \
 [ $(cat "/tmp/sbl_download_link.html" | wc -l) -lt 20 ]
@@ -343,8 +346,8 @@ then
     echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
     #
     rm -f "${USB_MOUNT_POINT}/${ARCHIVE_NAME}"
-    rm -f "${CURRENT_FINGERPRINT}"
-    rm -f "/tmp/gohash"
+#    rm -f "${CURRENT_FINGERPRINT}"
+#    rm -f "/tmp/gohash"
     rm -f "/tmp/install_online"
     #
     exit 5
@@ -360,8 +363,8 @@ then
     echo -e "($(basename $0)): $$ \033[1;41;37mFAILURE\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME}"
     #
     rm -f "${USB_MOUNT_POINT}/${ARCHIVE_NAME}"
-    rm -f "${CURRENT_FINGERPRINT}"
-    rm -f "/tmp/gohash"
+#    rm -f "${CURRENT_FINGERPRINT}"
+#    rm -f "/tmp/gohash"
     rm -f "/tmp/install_online"
     #
     exit 6
