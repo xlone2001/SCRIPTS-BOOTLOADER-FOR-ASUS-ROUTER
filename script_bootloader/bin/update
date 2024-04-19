@@ -111,9 +111,9 @@ PUBLIC_IPV4_ADDRESS="$(/opt/bin/curl -s -4 "${SOURCE_OF_PUBLIC_IP_ADDRESS}")"
 LOCATION="$(/opt/bin/curl -s -4 "${SOURCE_OF_LOCATION}=${PUBLIC_IPV4_ADDRESS}")"
 if [ "${LOCATION}" == "CN" ]
 then
-    DOWNLOAD_LINK_PREFIX="https://cdn.jsdelivr.net/gh/JACK-THINK/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER@latest/script_bootloader"
+    DOWNLOAD_LINK_PREFIX="https://cdn.jsdelivr.net/gh/xlone2001/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER@latest/script_bootloader"
 else
-    DOWNLOAD_LINK_PREFIX="https://raw.githubusercontent.com/JACK-THINK/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER/master/script_bootloader"
+    DOWNLOAD_LINK_PREFIX="https://raw.githubusercontent.com/xlone2001/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER/master/script_bootloader"
 fi
 #
 ########## END ##########
