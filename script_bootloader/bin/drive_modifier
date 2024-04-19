@@ -129,32 +129,32 @@ echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: LABEL OF ${USB_DRIVE_BRA
 umount -f "/dev/${USB_DRIVE}1" 2> /dev/null
 #
 #if $(checkSupportForExt4)
-if false
-then
-    echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: CREATE EXT4 FILESYSTEM"
+#if false
+#then
+#    echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: CREATE EXT4 FILESYSTEM"
     #
-    nvram set usb_ext_opt="barrier=1,data=journal"
-    nvram commit
+#    nvram set usb_ext_opt="barrier=1,data=journal"
+#    nvram commit
     #
-    mke2fs -FL "${USB_DRIVE_LABEL}" -t ext4 "${USB_DRIVE_PARTITION}"
+#    mke2fs -FL "${USB_DRIVE_LABEL}" -t ext4 "${USB_DRIVE_PARTITION}"
     #
-else
-    echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: CREATE EXT3 FILESYSTEM"
+#else
+#    echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: CREATE EXT3 FILESYSTEM"
     #
-    nvram set usb_ext_opt="barrier=1,data=ordered"
+#    nvram set usb_ext_opt="barrier=1,data=ordered"
     nvram commit
     #
 #    mkfs.ext3 -FL "${USB_DRIVE_LABEL}" "${USB_DRIVE_PARTITION}"
-fi
+#fi
 #
 # Check if mkfs.ext3 returns 0
 # 检查mkfs.ext3的返回值是否为0
-if [ ${?} -ne 0 ]
-then
-    echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: ${USB_DRIVE_BRAND_MODEL} IS NOT READY"
+#if [ ${?} -ne 0 ]
+#then
+#    echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: ${USB_DRIVE_BRAND_MODEL} IS NOT READY"
     #
-    exit 4
-fi
+#    exit 4
+#fi
 #
 sleep 120
 #
