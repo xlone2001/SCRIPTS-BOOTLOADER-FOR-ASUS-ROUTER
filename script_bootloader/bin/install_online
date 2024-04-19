@@ -378,13 +378,13 @@ rm -f "${USB_MOUNT_POINT}/${ARCHIVE_NAME}"
 #
 # Move directory script_bootloader to directory ${USB_MOUNT_POINT}
 # 移动目录script_bootloader至目录${USB_MOUNT_POINT}
-mv -f "${USB_MOUNT_POINT}"/JACK*/script_bootloader "${USB_MOUNT_POINT}"
+mv -f "${USB_MOUNT_POINT}"/xlone2001*/script_bootloader "${USB_MOUNT_POINT}"
 #
 sleep 10
 #
-# Remove directory JACK*
-# 删除目录JACK*
-rm -rf "${USB_MOUNT_POINT}"/JACK*
+# Remove directory xlone2001*
+# 删除目录xlone2001*
+rm -rf "${USB_MOUNT_POINT}"/xlone2001*
 #
 # Change the owner and group of each FILE
 # 更改文件所有者
