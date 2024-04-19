@@ -105,7 +105,7 @@ else
     #
     # DOWNLOAD_LINK: Download link of the latest SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER
     # 设置自定义变量DOWNLOAD_LINK为最新版SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER的下载链接
-    wget -q -c -t 10 -T 120 -O "/tmp/sbl_download_link.html" --no-check-certificate "https://api.github.com/repos/JACK-THINK/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER/releases/latest"
+    wget -q -c -t 10 -T 120 -O "/tmp/sbl_download_link.html" --no-check-certificate "https://api.github.com/repos/xlone2001/SCRIPTS-BOOTLOADER-FOR-ASUS-ROUTER/releases/latest"
     #
     if [ ! -s "/tmp/sbl_download_link.html" ] || \
     [ $(cat "/tmp/sbl_download_link.html" | wc -l) -lt 20 ]
@@ -206,7 +206,7 @@ then
         exit 5
     fi
     #
-    DIR_PREFIX="JACK-THINK-"
+    DIR_PREFIX="xlone2001-"
     #
 else
     echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: ${SERVICE_FUNCTION} ${SERVICE_NAME} OFFLINE"
