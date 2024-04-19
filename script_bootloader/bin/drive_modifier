@@ -111,15 +111,15 @@ sleep 10
 #
 # Re-partition /dev/${USB_DRIVE}
 # 重新分区/dev/${USB_DRIVE}
-echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: RE-PARTITION ${USB_DRIVE_BRAND_MODEL}"
-echo -ne "u\np\no\nn\np\n1\n2048\n\np\nw\n" | fdisk "/dev/${USB_DRIVE}"
+#echo -e "($(basename $0)): $$ \033[1;44;37mINFO\033[0m: RE-PARTITION ${USB_DRIVE_BRAND_MODEL}"
+#echo -ne "u\np\no\nn\np\n1\n2048\n\np\nw\n" | fdisk "/dev/${USB_DRIVE}"
 #
-if [ ${?} -ne 0 ]
-then
-    echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CAN'T RE-PARTITION ${USB_DRIVE_BRAND_MODEL}"
+#if [ ${?} -ne 0 ]
+#then
+#    echo -e "($(basename $0)): $$ \033[1;43;31mNOTICE\033[0m: CAN'T RE-PARTITION ${USB_DRIVE_BRAND_MODEL}"
     #
-    exit 3
-fi
+#    exit 3
+#fi
 #
 sleep 10
 #
